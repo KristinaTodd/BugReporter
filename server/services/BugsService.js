@@ -16,7 +16,7 @@ class BugsService {
     return await _repository.create(body);
   }
 
-  async edit(id, update) {
+  async update(id, update) {
     return await _repository.findByIdAndUpdate(id, update, { new: true })
   }
 
