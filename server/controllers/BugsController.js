@@ -1,6 +1,7 @@
 import express from "express";
 import bugsService from "../services/BugsService";
 import notesService from "../services/NotesService";
+import bug from "../models/Bug"
 
 export default class BugsController {
   constructor() {
@@ -62,8 +63,12 @@ export default class BugsController {
 
   async delete(req, res, next) {
     try {
-      await bugsService.delete(req.params.id)
-      res.send("deleted")
+      if (bug.status == false) {
+        let data = await bugsService.delete(req.params.id);
+        return res.send(data, "bug has been closed")
+      } else {
+        return res.send("this bug is already closed")
+      }
     } catch (error) {
       next(error);
     }

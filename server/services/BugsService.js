@@ -17,13 +17,18 @@ class BugsService {
   }
 
   async update(id, update) {
-    return await _repository.findByIdAndUpdate(id, update, { new: true })
+    let bug = await _repository.findById(id);
+    if (bug.status == false) {
+      return await _repository.findByIdAndUpdate(id, update, { new: true })
+    }
   }
+
 
   async delete(id) {
-    return await _repository.findByIdAndDelete(id)
+    let bug = await _repository.findById(id);
+    bug.status = true;
   }
-}
 
+}
 const bugsService = new BugsService();
 export default bugsService;
