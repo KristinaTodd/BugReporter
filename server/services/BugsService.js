@@ -17,16 +17,13 @@ class BugsService {
   }
 
   async update(id, update) {
-    let bug = await _repository.findById(id);
-    if (bug.status == false) {
+    if (Bug.status == false) {
       return await _repository.findByIdAndUpdate(id, update, { new: true })
     }
   }
 
-
   async delete(id) {
-    let bug = await _repository.findById(id);
-    bug.status = true;
+    await _repository.findByIdAndUpdate(id, (Bug.status = true));
   }
 
 }

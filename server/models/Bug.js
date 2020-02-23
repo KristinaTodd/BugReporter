@@ -7,7 +7,6 @@ const Bug = new Schema(
     description: { type: String, required: true },
     reportedBy: { type: String, required: true },
     status: { type: Boolean, required: true, default: false },
-    closedDate: { type: Date, default: Date.now },
     modifiedDate: { type: Date, default: Date.now }
   },
   { timestamps: true, toJSON: { virtuals: true } }

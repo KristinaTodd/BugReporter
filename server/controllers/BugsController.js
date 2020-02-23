@@ -66,8 +66,6 @@ export default class BugsController {
       if (bug.status == false) {
         let data = await bugsService.delete(req.params.id);
         return res.send(data, "bug has been closed")
-      } else {
-        return res.send("this bug is already closed")
       }
     } catch (error) {
       next(error);
