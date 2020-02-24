@@ -18,6 +18,7 @@ class BugsService {
 
   async update(id, update) {
     let bug = await _repository.findById(id)
+    // @ts-ignore
     if (!bug.closed) {
       return await _repository.findByIdAndUpdate(id, update, { new: true })
     }
