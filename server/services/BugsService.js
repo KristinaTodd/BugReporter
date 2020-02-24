@@ -18,9 +18,10 @@ class BugsService {
 
   async update(id, update) {
     let bug = await _repository.findById(id)
-    if (bug.closed == false) {
+    if (!bug.closed) {
       return await _repository.findByIdAndUpdate(id, update, { new: true })
     }
+    throw new Error("cannot edit closed bug")
   }
 
   async delete(id) {
